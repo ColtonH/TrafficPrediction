@@ -13,6 +13,7 @@ namespace Network_Tester
 {
     class Program
     {
+
         [STAThread]
         static void Main(string[] args)
         {
@@ -27,10 +28,10 @@ namespace Network_Tester
                 NeuralNetwork.AggregationFunctions.Sum sum = new NeuralNetwork.AggregationFunctions.Sum();
 
                 Layer hiddenLayer = new Layer(2, 20, sigmoid, sum);
+                Layer hiddenLayer2 = new Layer(20, 20, sigmoid, sum);
                 Layer outputLayer = new Layer(20, 1, sigmoid, sum);
-                Layer[] layers = { hiddenLayer, outputLayer };
 
-                ann = new Network(hiddenLayer, outputLayer);
+                ann = new Network(hiddenLayer, hiddenLayer2, outputLayer);
 
 
 
@@ -40,11 +41,13 @@ namespace Network_Tester
                     double[] input = new double[2];
                     double[] val = new double[1];
 
-                    input[0] = (r.NextDouble() * 10)-5;
+                    input[0] = (r.NextDouble() * 10) - 5;
                     input[1] = (r.NextDouble() * 10) - 5;
+
                     val[0] = ann.scale(-10, 100, Math.Pow(input[0],2)+Math.Pow(input[1],2), 0.2, .8);
-                    input[0] = ann.scaleInput(-5, 5, input[0]);
-                    input[1] = ann.scaleInput(-5, 5, input[1]);
+
+                    input[0] = ann.scaleInput(-10, 10, input[0]);
+                    input[1] = ann.scaleInput(-10, 10, input[1]);
 
                     inputs.Add(new Dataset(input, val));
                 }
@@ -56,9 +59,11 @@ namespace Network_Tester
 
                     input[0] = (r.NextDouble() * 10) - 5;
                     input[1] = (r.NextDouble() * 10) - 5;
+
                     val[0] = ann.scale(-10, 100, Math.Pow(input[0], 2) + Math.Pow(input[1], 2), 0.2, .8);
-                    input[0] = ann.scaleInput(-5, 5, input[0]);
-                    input[1] = ann.scaleInput(-5, 5, input[1]);
+
+                    input[0] = ann.scaleInput(-10, 10, input[0]);
+                    input[1] = ann.scaleInput(-10, 10, input[1]);
 
                     verify.Add(new Dataset(input, val));
                 }
@@ -89,15 +94,14 @@ namespace Network_Tester
             List<string> lines = new List<string>();
             for (int i = 0; i < 200; i++)
             {
-                double[] input = new double[2];
+                double[] input = new double[1];
 
-                input[0] = (r.NextDouble() * 10) - 5;
-                input[1] = (r.NextDouble() * 10) - 5;
-                input[0] = ann.scaleInput(-5, 5, input[0]);
-                input[1] = ann.scaleInput(-5, 5, input[1]);
+                input[0] = (r.NextDouble() * Math.PI*2);
+
+                input[0] = ann.scaleInput(-5, 10, input[0]);
 
 
-                lines.Add(ann.scale(-Math.Sqrt(3), Math.Sqrt(3), input[0], -5, 5) + "," + ann.scale(-Math.Sqrt(3), Math.Sqrt(3), input[1], -5, 5) + "," + ann.scale(.2, .8, ann.evaluate(input)[0], -10, 100));
+                lines.Add(ann.scale(-Math.Sqrt(3), Math.Sqrt(3), input[0], -5, 10) + "," +ann.scale(.2, .8, ann.evaluate(input)[0], -5, 5));
             }
 
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:\Users\John\Desktop\test.csv"))

@@ -44,10 +44,12 @@
     <Compile Include="AggregationFunctions\AggregationFunction.cs" />
     <Compile Include="AggregationFunctions\Product.cs" />
     <Compile Include="AggregationFunctions\Sum.cs" />
+    <Compile Include="DataItem.cs" />
     <Compile Include="Dataset.cs" />
     <Compile Include="Layer.cs" />
     <Compile Include="Network.cs" />
     <Compile Include="Neuron.cs" />
+    <Compile Include="NNData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ActivationFunctions\Sigmoid.cs" />
   </ItemGroup>
