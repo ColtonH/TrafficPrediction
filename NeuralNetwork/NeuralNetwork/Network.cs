@@ -137,11 +137,9 @@ namespace NeuralNetwork
             do{
                 if(iteration > maxIterations)
                 {
-                    //throw new Exception(); //TODO: Exception?
                     break;
                 }
-                if(iteration%100 == 0)
-                    Console.Out.WriteLine("Training iteration "+iteration);
+                Console.Out.WriteLine("Iteration "+iteration);
                 foreach (var tData in trainingData)
                 {
                     update(tData.getInputs(), tData.getTargets(), alpha, eta);

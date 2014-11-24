@@ -9,8 +9,8 @@ namespace NeuralNetwork
     public class NNData : DataItem 
     {
 
-        public NNData(DateTime date, double temp, double precip, double lat, double lon, Direction dir)
-            : base(date, temp, precip, lat, lon, dir)
+        public NNData(DateTime date, double temp, double precip, double lat, double lon, Direction dir,double speed)
+            : base(date, temp, precip, lat, lon, dir,speed)
         {
         }
         

@@ -14,10 +14,11 @@ namespace NeuralNetwork
         protected double latitude;
         protected double longitude;
         protected Direction direction;
+        protected double speed;
 
         public enum Direction { North, South, East, West}
 
-        public DataItem(DateTime d, double t, double p, double lat, double lon, Direction dir)
+        public DataItem(DateTime d, double t, double p, double lat, double lon, Direction dir,double speed)
         {
             this.date = d;
             this.temp = t;
@@ -25,9 +26,13 @@ namespace NeuralNetwork
             this.latitude = lat;
             this.longitude = lon;
             this.direction = dir;
+            this.speed = speed;
         }
 
-
+        public double getSpeed()
+        {
+            return this.speed;
+        }
         public abstract double[] getInputs();
 
 
