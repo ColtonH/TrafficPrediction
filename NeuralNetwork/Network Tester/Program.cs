@@ -115,7 +115,7 @@ namespace Network_Tester
 #endregion Data Import
 
                 Console.Out.WriteLine("\n\nTraining");
-                ann.train(training, validation);
+                ann.train(training, validation, 100);
 
                 SaveFileDialog save = new SaveFileDialog();
                 save.Title = "Save Artificial Neural Network";
